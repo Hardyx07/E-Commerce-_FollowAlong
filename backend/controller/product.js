@@ -115,6 +115,7 @@ router.get('/my-products', async (req, res) => {
 );
 
 router.get('/product/:id', async (req, res) => {
+  console.log("Fetching products...");
   const { id } = req.params;
   try {
       const product = await Product.findById(id);
@@ -186,6 +187,7 @@ router.delete('/delete-product/:id', async (req, res) => {
       res.status(500).json({ error: 'Server error. Could not delete product.' });
   }
 });
+
 router.post('/cart', async (req, res) => {
   try {
       const { userId, productId, quantity } = req.body;
@@ -225,4 +227,29 @@ router.post('/cart', async (req, res) => {
       res.status(500).json({ message: 'Server Error' });
   }
 });
+
+// GET cart details endpoint
+router.get('/cartproducts', async (req, res) => {
+  try {
+      const { email } = req.query;
+      if (!email) {
+          return res.status(400).json({ error: 'Email query parameter is required' });
+      }
+      const user = await User.findOne({ email }).populate({
+          path: 'cart.productId',
+          model: 'Product'
+      });
+      if (!user) {
+          return res.status(404).json({ error: 'User not found' });
+      }
+      res.status(200).json({
+          message: 'Cart retrieved successfully',
+          cart: user.cart
+      });
+  } catch (err) {
+      console.error('Server error:', err);
+      res.status(500).json({ error: 'Server Error' });
+  }
+});
+
 module.exports = router;
