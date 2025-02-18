@@ -167,9 +167,33 @@
 2. Fetched Cart Data: Implemented a query to get products inside the cart for a specific user.
 3. Tested API Responses: Ensured data retrieval worked seamlessly.
 ---
-
-
-
+### Milestone 19: Cart Page Implementation 🛒
+ 1. Create the Cart Frontend Page
+- Design and implement a **Cart** page in the frontend.
+- Fetch the cart products from the backend and display them.
+- Ensure that the cart layout is user-friendly and responsive.
+2. Implement Quantity Controls
+- For each product, add **`+`** and **`-`** buttons to modify the quantity.
+- Update the UI dynamically when the quantity changes.
+- Ensure that the quantity does not go below `1`.
+3. Develop Backend Endpoints for Quantity Updates
+- Create an endpoint to **increase** the product quantity in the cart.
+- Create an endpoint to **decrease** the product quantity.
+- Ensure that the backend updates the cart data correctly in the database.
+- Handle edge cases like product quantity limits and stock availability.
+---
+# Milestone 20: Profile Page Implementation 👤
+1. Create a Backend Endpoint for User Data
+- Develop an endpoint that retrieves and sends user data.
+- Ensure secure handling of user information.
+2. Create the Frontend Profile Page
+- Design a profile page layout that is clean and user-friendly.
+- Fetch and display user data from the backend.
+3. Display User Information
+- Show **profile photo, name, and email** in one section.
+- Display **addresses** in another section with an "Add Address" button.
+- If no addresses are available, display **"No address found"**.
+---
 
 
 
