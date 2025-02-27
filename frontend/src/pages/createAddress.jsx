@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../components/auth/nav";
+
 const CreateAddress = () => {
     const navigate = useNavigate();
     const [country, setCountry] = useState("");
@@ -10,6 +11,7 @@ const CreateAddress = () => {
     const [address2, setAddress2] = useState("");
     const [zipCode, setZipCode] = useState("");
     const [addressType, setAddressType] = useState("");
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         const addressData = {
@@ -19,15 +21,14 @@ const CreateAddress = () => {
             address2,
             zipCode,
             addressType,
-            email: "luckyhard456@gmail.com"
+            email: "luckyhard456@gmail.com",
         };
+
         try {
             const response = await axios.post(
                 "http://localhost:8000/api/v2/user/add-address",
                 addressData,
-                {
-                    headers: { "Content-Type": "application/json" },
-                }
+                { headers: { "Content-Type": "application/json" } }
             );
             if (response.status === 201) {
                 alert("Address added successfully!");
@@ -38,86 +39,52 @@ const CreateAddress = () => {
             alert("Failed to add address. Please check the data and try again.");
         }
     };
+
     return (
         <>
             <NavBar />
-            <div className="w-[90%] max-w-[500px] bg-white shadow h-auto rounded-[4px] p-4 mx-auto">
-                <h5 className="text-[24px] font-semibold text-center">Add Address</h5>
-                <form onSubmit={handleSubmit}>
-                    <div className="mt-4">
-                        <label className="pb-1 block">Country</label>
-                        <input
-                            type="text"
-                            value={country}
-                            className="w-full p-2 border rounded"
-                            onChange={(e) => setCountry(e.target.value)}
-                            placeholder="Enter country"
-                            required
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="pb-1 block">City</label>
-                        <input
-                            type="text"
-                            value={city}
-                            className="w-full p-2 border rounded"
-                            onChange={(e) => setCity(e.target.value)}
-                            placeholder="Enter city"
-                            required
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="pb-1 block">Address 1</label>
-                        <input
-                            type="text"
-                            value={address1}
-                            className="w-full p-2 border rounded"
-                            onChange={(e) => setAddress1(e.target.value)}
-                            placeholder="Enter address 1"
-                            required
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="pb-1 block">Address 2</label>
-                        <input
-                            type="text"
-                            value={address2}
-                            className="w-full p-2 border rounded"
-                            onChange={(e) => setAddress2(e.target.value)}
-                            placeholder="Enter address 2"
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="pb-1 block">Zip Code</label>
-                        <input
-                            type="number"
-                            value={zipCode}
-                            className="w-full p-2 border rounded"
-                            onChange={(e) => setZipCode(e.target.value)}
-                            placeholder="Enter zip code"
-                            required
-                        />
-                    </div>
-                    <div className="mt-4">
-                        <label className="pb-1 block">Address Type</label>
-                        <input
-                            type="text"
-                            value={addressType}
-                            className="w-full p-2 border rounded"
-                            onChange={(e) => setAddressType(e.target.value)}
-                            placeholder="Enter address type"
-                            required
-                        />
-                    </div>
-                    <button
-                        type="submit"
-                        className="w-full mt-4 bg-blue-500 text-white p-2 rounded"
-                    >
+            <div className="flex justify-center items-center min-h-screen bg-gray-100 p-4">
+                <div className="w-full max-w-[450px] bg-white shadow-lg rounded-2xl p-6">
+                    <h2 className="text-2xl font-bold text-gray-800 text-center mb-6">
                         Add Address
-                    </button>
-                </form>
+                    </h2>
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        {/* Input Fields */}
+                        {[
+                            { label: "Country", value: country, setter: setCountry },
+                            { label: "City", value: city, setter: setCity },
+                            { label: "Address 1", value: address1, setter: setAddress1 },
+                            { label: "Address 2", value: address2, setter: setAddress2 },
+                            { label: "Zip Code", value: zipCode, setter: setZipCode, type: "number" },
+                            { label: "Address Type", value: addressType, setter: setAddressType },
+                        ].map((field, index) => (
+                            <div key={index}>
+                                <label className="block text-gray-600 font-medium mb-1">
+                                    {field.label}
+                                </label>
+                                <input
+                                    type={field.type || "text"}
+                                    value={field.value}
+                                    onChange={(e) => field.setter(e.target.value)}
+                                    placeholder={`Enter ${field.label.toLowerCase()}`}
+                                    required
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none transition-all"
+                                />
+                            </div>
+                        ))}
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            className="w-full bg-blue-600 text-white font-semibold p-3 rounded-lg shadow-md hover:bg-blue-700 transition-all"
+                        >
+                            Add Address
+                        </button>
+                    </form>
+                </div>
             </div>
         </>
     );
 };
+
 export default CreateAddress;

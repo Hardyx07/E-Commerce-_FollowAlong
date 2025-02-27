@@ -60,7 +60,7 @@ export default function AddressCard({_id, country, city, address1, address2, zip
 						{addressType}
 					</div>
 				</div>
-			</div>
+			</div> 
 		</div>
 	);
 }
