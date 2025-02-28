@@ -1,6 +1,8 @@
+// SelectAddress.jsx
 import React, { useState, useEffect } from 'react';
 import NavBar from '../components/auth/nav'; // Ensure the path is correct and component name matches
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 // Optionally, if you have a context or a way to get the authenticated user's email, import it
 // import { useAuth } from '../contexts/AuthContext';
 const SelectAddress = () => {
@@ -14,8 +16,10 @@ const SelectAddress = () => {
     useEffect(() => {
         const fetchAddresses = async () => {
             try {
-                const response = await fetch(`http://localhost:8000/api/v2/user/addresses?email=${encodeURIComponent(userEmail)}`);
-                if (!response.ok) {
+                const response = await axios.get('http://localhost:8000/api/v2/user/addresses', {
+                    params: { email: userEmail },
+                });
+                if (response.status !== 200) {
                     // Handle specific HTTP errors
                     if (response.status === 404) {
                         throw new Error('User not found.');
@@ -25,7 +29,7 @@ const SelectAddress = () => {
                         throw new Error(`HTTP error! status: ${response.status}`);
                     }
                 }
-                const data = await response.json();
+                const data = response.data;
                 // Validate the response structure
                 if (data && Array.isArray(data.addresses)) {
                     setAddresses(data.addresses);
@@ -35,7 +39,7 @@ const SelectAddress = () => {
                 }
             } catch (err) {
                 console.error('Error fetching addresses:', err);
-                setError(err.message || 'An unexpected error occurred.');
+                setError(err.response?.data?.message || err.message || 'An unexpected error occurred.');
             } finally {
                 setLoading(false);
             }
@@ -43,8 +47,8 @@ const SelectAddress = () => {
         fetchAddresses();
     }, [userEmail]);
     const handleSelectAddress = (addressId) => {
-        // Optionally, pass the entire address object instead of just the ID
-        navigate('/order-confirmation', { state: { addressId } });
+        // Navigate to Order Confirmation with the selected address ID and email
+        navigate('/order-confirmation', { state: { addressId, email: userEmail } });
     };
     // Render loading state
     if (loading) {
