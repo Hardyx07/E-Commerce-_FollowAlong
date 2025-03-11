@@ -182,7 +182,7 @@
 - Ensure that the backend updates the cart data correctly in the database.
 - Handle edge cases like product quantity limits and stock availability.
 ---
-# Milestone 20: Profile Page Implementation 👤
+### Milestone 20: Profile Page Implementation 👤
 1. Create a Backend Endpoint for User Data
 - Develop an endpoint that retrieves and sends user data.
 - Ensure secure handling of user information.
@@ -194,7 +194,7 @@
 - Display **addresses** in another section with an "Add Address" button.
 - If no addresses are available, display **"No address found"**.
 ---
-# Milestone 21 - Address Input Form 🚀
+### Milestone 21 - Address Input Form 🚀
 1. Create the Address Form Page
 - Build a **React component** for the address input form.
 - Use **controlled inputs** to manage form state.
@@ -205,7 +205,7 @@
 - When clicking **Add Address** in the **Profile** page, navigate to the address form page.
 - Use **React Router** for navigation.
 ---
-# Milestone 22 - 📝 Implement Address Storage Endpoint
+### Milestone 22 - 📝 Implement Address Storage Endpoint
 1. Create the Endpoint in Express
 - Defined a `POST` route to handle incoming address data.
 - Extracted the user ID and address from the request body.
@@ -215,7 +215,7 @@
 3. Test the Endpoint
 - Used Thunder Client, Postman, or a frontend form to test the functionality.
 ---
-# Milestone 23: Implementing Place Order Functionality 🛒
+### Milestone 23: Implementing Place Order Functionality 🛒
 1. **Create a Place Order Button**
    - Inside the **Cart Page**, add a `Place Order` button.
    - When clicked, navigate to the **Select Address** page.
@@ -235,6 +235,16 @@
 4. **Add Place Order Button**
    - At the bottom, provide a `Place Order` button to confirm the order.
    ---
+### Milestone 25:  Backend endpoint that will help in placing the order.
+- create an endpoint that will receive the products, user, address details
+- will get the mail of the user using that you need to retrive the _id of the user
+- will store order details in mongodb order collection
+
+### Milestone 26: Backend endpoint for all the orders of the user.
+- Create an endpoint that will receive the user mail
+- We will get the mail of the user using that you need to retrive the _id of the user
+- Using that _id we will get all the orders of that user
+- Send all the users orders in the response.
 
 
 
