@@ -5,6 +5,7 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const product= require('./controller/product')
+const orders = require('./controller/orders');
 const path=require('path')
 
 app.use(express.json());
@@ -20,6 +21,11 @@ if (process.env.NODE_ENV !== "PRODUCTION") {
         path: "backend/config/.env",
     });
 };
+
+// Serve static files for uploads and products
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use('/products', express.static(path.join(__dirname, 'products')));
+
 //import Routes
 const user = require("./controller/user");
 app.use("/api/v2/user", user);
@@ -27,5 +33,6 @@ app.use("/api/v2/product", product);
 // Serve static files for uploads and products
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/products', express.static(path.join(__dirname, 'products')));
+app.use("/api/v2/orders", orders);
 app.use(ErrorHandler);
 module.exports= app;
