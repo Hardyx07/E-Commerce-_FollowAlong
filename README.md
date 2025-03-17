@@ -225,7 +225,7 @@
 3. **Backend Endpoint for User Addresses**
    - Write a backend API endpoint to fetch all the addresses of the user
    ---
-# Milestone 24: Finalizing the Order Process ✅
+### Milestone 24: Finalizing the Order Process ✅
 1. **Display Ordered Products**
    - Show all the products that the user is ordering.
 2. **Display Selected Address**
@@ -251,6 +251,11 @@
 - get request to my-orders endpoint that we created in previous milestone.
 - Displayed all the user orders
 - added my-orders page in navbar for better navigation.
+---
+### Milestone 28: Feature to cancel the placed orders.
+- In my-orders page for every order added cancel order button
+- created an endpoint that will receive the order-id
+---
 
 
 
