@@ -239,12 +239,19 @@
 - create an endpoint that will receive the products, user, address details
 - will get the mail of the user using that you need to retrive the _id of the user
 - will store order details in mongodb order collection
-
+---
 ### Milestone 26: Backend endpoint for all the orders of the user.
 - Create an endpoint that will receive the user mail
 - We will get the mail of the user using that you need to retrive the _id of the user
 - Using that _id we will get all the orders of that user
 - Send all the users orders in the response.
+---
+### Milestone 27: Frontend page for displaying all the orders.
+- created an my-orders page
+- get request to my-orders endpoint that we created in previous milestone.
+- Displayed all the user orders
+- added my-orders page in navbar for better navigation.
+
 
 
 
