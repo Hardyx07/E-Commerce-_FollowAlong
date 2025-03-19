@@ -256,6 +256,12 @@
 - In my-orders page for every order added cancel order button
 - created an endpoint that will receive the order-id
 ---
+### Milestone 29: Integrated online payments.
+- Created an PayPal account on PayPal developer dashboard
+= Created payment page in order confirmation page where one is COD and another is online payment.
+- Created radio buttons to select COD or online payment and when we click on online payment PayPal button is displayed.
+---
+
 
 
 
