@@ -261,7 +261,11 @@
 = Created payment page in order confirmation page where one is COD and another is online payment.
 - Created radio buttons to select COD or online payment and when we click on online payment PayPal button is displayed.
 ---
-
+### Milestone 30: Using paypal for online payment.
+- created PayPal account and got the UserID inside sandbox account.
+- Implemented online payment using PayPal API using the client key created earlier.
+-  Downloaded NPM package (react-paypal-js) that will provide an component called PayPalScriptProvider which will display online payment methods like credit or debit card etc..,
+---
 
 
 
