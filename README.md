@@ -266,6 +266,12 @@
 - Implemented online payment using PayPal API using the client key created earlier.
 -  Downloaded NPM package (react-paypal-js) that will provide an component called PayPalScriptProvider which will display online payment methods like credit or debit card etc..,
 ---
+### Milestone 31: Implemented redux store
+- created an new folder called store with two files store.js and userActions.js.
+- stores user mail inside global state.
+= In store.js file configured an store with userReducer function that will handle global user email state.
+- In userActions.js file wrote an function called setEmail that will help in storing email state inside global state.
+---
 
 
 
