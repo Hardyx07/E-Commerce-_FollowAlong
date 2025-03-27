@@ -274,6 +274,11 @@
 ---
 ### Milestone 32: Using redux to store the state and access in all the pages.
 - In Login page and all the remaining pages , will use Dispatch method to store the mail inside global state.
+---
+### Milestone 33: Created an JWT token and stored the tokens inside the cookie.
+-  Downloaded jsonwebtoken package 
+- Used sign method to create an JWT token with mail and ID and Gave maxAge to set expire time
+- Added the cookie inside the response that helps to store the cookie inside browser.
 
 
 
