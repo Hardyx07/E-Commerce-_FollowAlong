@@ -272,6 +272,9 @@
 = In store.js file configured an store with userReducer function that will handle global user email state.
 - In userActions.js file wrote an function called setEmail that will help in storing email state inside global state.
 ---
+### Milestone 32: Using redux to store the state and access in all the pages.
+- In Login page and all the remaining pages , will use Dispatch method to store the mail inside global state.
+
 
 
 
