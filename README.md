@@ -285,6 +285,9 @@
 - In backend wrote an middleware function to validate that JWT token
 - In every page user cannot go to that page with out login
 ---
+### Milestone 35: Deployment Done.
+- Frontend deployed.
+- Backend deployed.
 
 
 
