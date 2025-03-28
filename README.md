@@ -279,6 +279,13 @@
 -  Downloaded jsonwebtoken package 
 - Used sign method to create an JWT token with mail and ID and Gave maxAge to set expire time
 - Added the cookie inside the response that helps to store the cookie inside browser.
+---
+### Milestone 34: Validating JWT token received from the client.
+- Got the token from the browser cookie.
+- In backend wrote an middleware function to validate that JWT token
+- In every page user cannot go to that page with out login
+---
+
 
 
 

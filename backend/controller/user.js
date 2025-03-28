@@ -10,6 +10,7 @@ const jwt = require("jsonwebtoken");
 // const sendMail = require("../utils/sendMail");
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
+const { isAuthenticatedUser } = require('../middleware/auth');
 
 router.post(
     "/create-user",
@@ -63,13 +64,12 @@ router.post(
         return next(new ErrorHandler("Invalid Email or Password", 401));
     }
     const isPasswordMatched = await bcrypt.compare(password, user.password);
-    console.log("At Auth", "Password: ", password, "Hash: ", user.password);
     console.log(isPasswordMatched)
     if (!isPasswordMatched) {
         return next(new ErrorHandler("Invalid Email or Password", 401));
     }
-     // Generate JWT token
-     const token = jwt.sign(
+    // Generate JWT token
+    const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWT_SECRET || "your_jwt_secret",
       { expiresIn: "1h" }
@@ -90,7 +90,7 @@ router.post(
     });
 }));
 
-router.get("/profile", catchAsyncErrors(async (req, res, next) => {
+router.get("/profile", isAuthenticatedUser, catchAsyncErrors(async (req, res, next) => {
   const { email } = req.query;
   if (!email) {
       return next(new ErrorHandler("Please provide an email", 400));
@@ -111,7 +111,7 @@ router.get("/profile", catchAsyncErrors(async (req, res, next) => {
   });
 }));
 
-router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
+router.post("/add-address", isAuthenticatedUser, catchAsyncErrors(async (req, res, next) => {
   const { country, city, address1, address2, zipCode, addressType, email } = req.body;
 
   const user = await User.findOne({ email });
@@ -134,7 +134,7 @@ router.post("/add-address", catchAsyncErrors(async (req, res, next) => {
   });
 }));
 
-router.get("/addresses", catchAsyncErrors(async (req, res, next) => {
+router.get("/addresses", isAuthenticatedUser, catchAsyncErrors(async (req, res, next) => {
   const { email } = req.query;
   if (!email) {
       return next(new ErrorHandler("Please provide an email", 400));
