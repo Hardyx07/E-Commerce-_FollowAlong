@@ -150,4 +150,22 @@ router.get("/addresses", isAuthenticatedUser, catchAsyncErrors(async (req, res, 
 }
 ));
 
+// Get current logged in user details
+router.get("/me", isAuthenticatedUser, catchAsyncErrors(async (req, res, next) => {
+  // req.user is already set by isAuthenticatedUser middleware
+  const user = req.user;
+  
+  res.status(200).json({
+    success: true,
+    user: {
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      avatar: user.avatar,
+      role: user.role,
+      createdAt: user.createdAt
+    }
+  });
+}));
+
 module.exports = router;
