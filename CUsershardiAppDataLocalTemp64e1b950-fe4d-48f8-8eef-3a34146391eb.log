@@ -1,0 +1,15 @@
+total 27
+drwxr-xr-x 1 hardi 197609    0 Mar 28 14:32 ./
+drwxr-xr-x 1 hardi 197609    0 Mar 28 14:56 ../
+-rw-r--r-- 1 hardi 197609   64 Jan 22 10:06 App.css
+-rw-r--r-- 1 hardi 197609 1249 Mar 27 11:27 App.jsx
+drwxr-xr-x 1 hardi 197609    0 Jan 22 10:06 assets/
+-rw-r--r-- 1 hardi 197609  221 Mar 28 14:32 axiosConfig.js
+drwxr-xr-x 1 hardi 197609    0 Feb 18 12:08 components/
+-rw-r--r-- 1 hardi 197609  311 Mar 25 10:23 main.jsx
+drwxr-xr-x 1 hardi 197609    0 Mar 17 12:08 pages/
+-rw-r--r-- 1 hardi 197609  755 Mar 17 12:09 Routes.jsx
+drwxr-xr-x 1 hardi 197609    0 Jan 29 10:40 static/
+drwxr-xr-x 1 hardi 197609    0 Mar 25 10:31 store/
+drwxr-xr-x 1 hardi 197609    0 Jan 28 15:21 styles/
+-rw-r--r-- 1 hardi 197609 1716 Jan 25 09:50 validation.js

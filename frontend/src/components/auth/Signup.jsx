@@ -1,19 +1,22 @@
 import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
 import axios from "axios";
 import ValidationFormObject from "../../validation";
 import { useDispatch } from 'react-redux';
-  import { setemail } from "../../store/userActions";
+import { setemail } from "../../store/userActions";
 
 const Signup = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [visible, setVisible] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [errors, setErrors] = useState({});
+  
   const handleFileSubmit = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -22,6 +25,7 @@ const Signup = () => {
       setAvatar(file);
     }
   };
+  
   const validateFields = () => {
     const nameError = ValidationFormObject.validteName(name);
     const emailError = ValidationFormObject.validteEmail(email);
@@ -33,6 +37,7 @@ const Signup = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0; // Return true if no errors
   };
+  
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateFields()) {
@@ -49,18 +54,25 @@ const Signup = () => {
         "Accept": "any",
       },
     };
- // Axios request to backend
- axios
- .post("http://localhost:8000/api/v2/user/create-user", newForm, config)
- .then((res) => {
-  alert("User created successfully!"); // Success message from server
-   console.log(res.data); // Success response from server
- })
- .catch((err) => {
-   alert(err.response ? err.response.data.message : err.message); // Error message from server
-   console.error(err.response ? err.response.data : err.message); // Error handling
- });
-};
+    
+    // Axios request to backend
+    axios
+      .post("http://localhost:8000/api/v2/user/create-user", newForm, config)
+      .then((res) => {
+        alert("User created successfully!"); // Success message from server
+        console.log(res.data); // Success response from server
+        
+        // Set email in Redux store to mark user as authenticated
+        dispatch(setemail(email));
+        
+        // Redirect to home page after successful signup
+        navigate('/');
+      })
+      .catch((err) => {
+        alert(err.response ? err.response.data.message : err.message); // Error message from server
+        console.error(err.response ? err.response.data : err.message); // Error handling
+      });
+  };
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
       <div className="sm:mx-auto sm:w-full sm:max-w-md">
