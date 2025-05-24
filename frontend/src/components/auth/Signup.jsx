@@ -2,7 +2,7 @@ import { React, useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Link, useNavigate } from "react-router-dom";
 import { RxAvatar } from "react-icons/rx";
-import axios from "axios";
+import axiosInstance from "../../axiosConfig";
 import ValidationFormObject from "../../validation";
 import { useDispatch } from 'react-redux';
 import { setemail } from "../../store/useractions";
@@ -56,8 +56,8 @@ const Signup = () => {
     };
     
     // Axios request to backend
-    axios
-      .post("http://localhost:8000/api/v2/user/create-user", newForm, config)
+    axiosInstance
+      .post("/api/v2/user/create-user", newForm, config)
       .then((res) => {
         alert("User created successfully!"); // Success message from server
         console.log(res.data); // Success response from server
