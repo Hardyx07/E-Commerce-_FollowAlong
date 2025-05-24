@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "../../styles/styles";
-import axios from "axios";
+import axiosInstance from "../../axiosConfig";
 import { useDispatch } from "react-redux";
 import { setemail } from "../../store/useractions";
-import { useNavigate } from "react-router-dom"; 
-
-// Ensure axios sends cookies with requests
-axios.defaults.withCredentials = true;
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -19,7 +16,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/v2/user/login", { email, password} , {withCredentials: true,});
+      const response = await axiosInstance.post("/api/v2/user/login", { email, password });
       console.log(response.data);
       alert("Logged in successfully!");
       // Dispatch email to Redux state (token is now handled via cookies)

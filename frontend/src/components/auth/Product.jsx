@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
+import { getImageUrl } from "../../utils/imageUtils";
 
 function Product({ _id, name, images, description, price, category, tags }) {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -48,7 +50,7 @@ function Product({ _id, name, images, description, price, category, tags }) {
             <div className="relative w-full h-64 overflow-hidden bg-gray-100">
                 {currentImage ? (
                     <img 
-                        src={`http://localhost:8000${currentImage}`}
+                        src={getImageUrl(currentImage)}
                         alt={name}
                         className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                     />
@@ -142,5 +144,14 @@ function Product({ _id, name, images, description, price, category, tags }) {
         </div>
     );
 }
+Product.propTypes = {
+    _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    name: PropTypes.string.isRequired,
+    images: PropTypes.arrayOf(PropTypes.string),
+    description: PropTypes.string,
+    price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+    category: PropTypes.string,
+    tags: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default Product;
