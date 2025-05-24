@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from '../store/store';
-import { setemail } from '../store/userActions';
+import { setemail } from '../store/useractions';
 
 // Ensure axios sends cookies with requests
 axios.defaults.withCredentials = true;
